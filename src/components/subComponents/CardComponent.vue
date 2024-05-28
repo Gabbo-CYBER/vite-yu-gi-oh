@@ -1,42 +1,39 @@
 <script>
-// import HeaderComponent from "./AppMain.vue";
 
 export default {
-  data() {
-    return {
-      title: "titolo",
-    };
-  },
+    name: 'Card',
+    props: {
+        img: String,
+        name: String,
+        type: String
+    }
+}
 
-  // 	methods:{
-  // 		myMethods(){
-  // 			...
-  // 		},
-  // 	},
-
-  // components: {
-  //	MyComponent,
-  // },
-
-  props: {
-    card: Object,
-  },
-};
 </script>
 
 <template>
-  <div class="card text-center">
-    <img class="w-100" :src="card.card_images[0].image_url" alt="" />
-    <div class="card-text">
-      <p>
-        {{ card.name }}
-      </p>
-      <p v-if="card.attribute > 0">
-        {{ card.attribute }}
-      </p>
-      <p v-else>Nessun Attributo</p>
-    </div>
-  </div>
+
+    <article class="py-2">
+        <div class="img"><img :src="img"></div>
+        <div class="background_orange">
+            <h3 class="text-center">{{ name }}</h3>
+            <h6 class="text-center">{{ type }}</h6>
+        </div>
+    </article>
+
 </template>
 
-<style lang="scss" scoped></style>
+<style scoped>
+
+img {
+    width: 100%;
+}
+
+.background_orange {
+    background-color: orange;
+    height: 100px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+</style>

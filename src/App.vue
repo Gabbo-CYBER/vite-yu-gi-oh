@@ -2,6 +2,10 @@
 import AppHeader from './components/AppHeader.vue';
 import AppMain from './components/AppMain.vue';
 import AppFooter from './components/AppFooter.vue';
+import { store } from './data/store';
+import { archeType } from './data/store';
+
+import axios from 'axios';
 
 
 export default {
@@ -9,44 +13,43 @@ export default {
     AppHeader,
     AppMain,
     AppFooter,
-    
-    
+
+
   },
   data() {
     return {
-      
+      store,
+      archeType
     }
   },
-  methods: {
-   
-    }
-  }
- 
+  mounted() {
+    axios.get(this.store.urlAPI).then(r => {
+      this.store.cardElement = [];
+      this.store.cardElement = r.data.data;
+    })
+    axios.get(this.archeType.urlAPI).then(a => {
+      archeType.archeTypeList = a.data;
+    })
+  },
+}
 </script>
 
 <template>
-  <AppHeader>
-     <!-- <a href="google.it">Link non stilizzato in header</a>  -->
-  </AppHeader>
+  <header>
+    <AppTitle />
+  </header>
 
-  <AppMain>
+  <main>
+    <AppFilter />
+    <AppMain />
+    <!-- <span v-else>Sono in attesa di dati v-if="store.loading == false"</span> -->
+  </main>
 
-
-  </AppMain>
-  <AppFooter>
-
-
-
-
-  </AppFooter>
-
-
-    
-
-      
+  <footer></footer>
 </template>
 
 <style scoped>
-
+main {
+  background-color: #C68636;
+}
 </style>
-

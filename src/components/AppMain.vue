@@ -1,61 +1,68 @@
 <script>
-import CardComponent from "./subComponents/CardComponent.vue";
 
-import { store } from "../data/store.js";
+import { store } from '../store';
+import mainList from './mainList.vue';
+import mainFound from './AppFooter.vue';
 
 export default {
-  data() {
-    return {
-      title: "titolo",
-      store,
-      // img: card.card_images.image_url,
-    };
-  },
+    name: 'Main',
+    components: {
+        mainList,
+        mainFound,
+    },
+    data() {
+        return {
+            store
+        }
+    }
+}
 
-  components: {
-    CardComponent,
-  },
-
-  // 	props:{
-  // 		passaggioInfo: stringa,
-  //  	 },
-};
 </script>
 
 <template>
-  <!-- N.B. P-5 è DA RIVEDERE SE SI INSERISCE SELECT OPTION. -->
-  <div class="bg p-5">
-    <div class="container p-5">
-      <div class="found">
-        <h1>Found {{ store.cards.length }} Cards</h1>
-      </div>
-      <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4">
-        <div
-          class="col my-2"
-          v-for="(card, index) in store.cards"
-          :key="card.id"
-        >
-          <CardComponent :card="store.cards[index]"></CardComponent>
+    <section class="background_color">
+        <div class="container ">
+            <div class="row py-5">
+                <div class="col-2 ">
+                    <div>
+                        <select name="type" id="selectType" class="mb-2" v-model="store.cardsArchetypesSelected"
+                            @change="$emit('search')">
+                            <option v-for="archetype in store.cardsArchetypes" :value="archetype.archetype_name">{{
+                                archetype.archetype_name }}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <!-- CARDS -->
-    </div>
-  </div>
+        <div class="container-fluid ">
+            <div class="row g-0 d-flex justify-content-center">
+                <div class="col-8 py-5   container_cards">
+                    <div class="col top_background_cards">
+                        <mainFound></mainFound>
+                    </div>
+                    <mainList></mainList>
+                </div>
+            </div>
+        </div>
+    </section>
 </template>
 
-<style lang="scss" scoped>
-.bg {
-  background-color: #d48f38ff;
-  color: white;
-  .container {
-    background-color: white;
-    .found {
-      background-color: #212529ff;
-      height: 50px;
-    }
-    .col-text {
-      background-color: red;
-    }
-  }
+
+<style>
+.background_color {
+    background-color: #78d2e2;
+}
+
+.color_white {
+    color: white;
+}
+
+.container_cards {
+    background-color: rgb(181, 228, 27);
+    border-radius: 15px;
+}
+
+.top_background_cards {
+    background-color: #2ad813;
 }
 </style>

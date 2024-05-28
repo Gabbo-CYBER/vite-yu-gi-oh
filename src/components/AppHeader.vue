@@ -1,45 +1,41 @@
 <script>
-// import HeaderComponent from "./components/AppHeader.vue";
 
 export default {
-  data() {
-    return {
-      logo: "/logo.png",
-      title: "Yu-Gi-Oh",
-    };
-  },
+    name: 'Header'
+}
 
-  // 	methods:{
-  // 		myMethods(){
-  // 			...
-  // 		},
-  // 	},
-
-  // components: {
-  //	MyComponent,
-  // },
-
-  // 	props:{
-  // 		passaggioInfo: stringa,
-  //  	 },
-};
 </script>
 
 <template>
-  <header class="px-5 d-flex align-items-center">
-    <div>
-      <img :src="logo" :alt="title" />
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="  header_box col d-flex justify-content-start align-items-center">
+                <div class="px-5">
+                    <img class="img_logo " src="http://vignette1.wikia.nocookie.net/yugiohenespanol/images/a/aa/Yugioh_anime_logo.jpg/revision/latest?cb=20130310042737&path-prefix=es" alt="">
+                </div>
+                <div>
+                    <h1 class="font_size_32 px-5">YO-GI-OH API</h1>
+                </div>
+            </div>
+        </div>
     </div>
-    <h1>{{ title }}</h1>
-  </header>
+
 </template>
 
-<style lang="scss" scoped>
-header {
-  background-color: white;
-  img {
-    height: 100px;
-    margin-right: 10px;
-  }
-}
+
+<style>
+
+    .header_box{
+        height: 100px;
+        
+        .img_logo{
+        width: 100px;
+        height: 30px;
+    }
+    .font_size_32{
+        font-size: 56px;
+    }  
+    }
+    
 </style>
